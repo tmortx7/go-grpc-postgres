@@ -1,0 +1,37 @@
+
+// [START declaration]
+syntax = "proto3";
+package usermgmt;
+
+// [END declaration]
+
+// [START go_declaration]
+option go_package= "github.com/tmortx7/go-grpc-postgres";
+// [END go_declaration]
+
+service UserManagement {
+  rpc CreateNewUser (NewUser) returns (User) {}
+  rpc GetUsers (GetUsersParams) returns (UsersList){}
+}
+
+// [START messages]
+message NewUser {
+  string name = 1;
+  int32 age = 2;
+}
+
+message User {
+  string name = 1;
+  int32 age = 2;
+  int32 id = 3;
+}
+
+message GetUsersParams{
+
+}
+// Our user file is just one of these.
+message UsersList {
+  repeated User users = 1;
+}
+
+// [END messages]
